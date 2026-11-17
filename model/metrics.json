@@ -1,0 +1,95 @@
+{
+  "dataset_rows": 2400,
+  "test_rows": 480,
+  "features": [
+    "planned_duration_days",
+    "budget_musd",
+    "num_activities",
+    "dependency_density",
+    "critical_path_ratio",
+    "subcontractor_count",
+    "pct_complete_snapshot",
+    "spi",
+    "cpi",
+    "change_orders_so_far",
+    "weather_delay_days_so_far",
+    "rework_pct",
+    "crew_turnover_pct",
+    "procurement_delay_days_so_far",
+    "avg_float_days"
+  ],
+  "classification": {
+    "winner": "logistic_regression",
+    "results": {
+      "logistic_regression": {
+        "roc_auc": 0.941,
+        "accuracy": 0.863,
+        "precision": 0.845,
+        "recall": 0.801,
+        "f1": 0.823
+      },
+      "random_forest": {
+        "roc_auc": 0.912,
+        "accuracy": 0.825,
+        "precision": 0.845,
+        "recall": 0.686,
+        "f1": 0.757
+      },
+      "hist_gradient_boosting": {
+        "roc_auc": 0.918,
+        "accuracy": 0.831,
+        "precision": 0.802,
+        "recall": 0.764,
+        "f1": 0.783
+      }
+    }
+  },
+  "regression": {
+    "winner": "hist_gradient_boosting",
+    "results": {
+      "linear_regression": {
+        "mae_days": 18.67,
+        "rmse_days": 24.45,
+        "r2": 0.631
+      },
+      "random_forest": {
+        "mae_days": 18.77,
+        "rmse_days": 24.73,
+        "r2": 0.622
+      },
+      "hist_gradient_boosting": {
+        "mae_days": 15.88,
+        "rmse_days": 21.48,
+        "r2": 0.715
+      }
+    }
+  },
+  "top_features_for_slip": [
+    [
+      "spi",
+      0.1333
+    ],
+    [
+      "rework_pct",
+      0.0827
+    ],
+    [
+      "dependency_density",
+      0.0735
+    ],
+    [
+      "change_orders_so_far",
+      0.0569
+    ],
+    [
+      "procurement_delay_days_so_far",
+      0.0558
+    ],
+    [
+      "avg_float_days",
+      0.0523
+    ]
+  ],
+  "slip_definition": "delay_days greater than 14",
+  "snapshot": "features measured at roughly 30 percent complete"
+}
